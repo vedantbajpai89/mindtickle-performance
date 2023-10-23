@@ -3,7 +3,7 @@ package simulations.authors
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import config.ConfigFactoryManager
-import simulations.testdata.TestDataGenerator
+import simulations.authors.testdata.TestDataGenerator
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -37,6 +37,6 @@ class GetAuthorsByAuthorIdSimulation extends Simulation{
       nothingFor(3 seconds),
       rampUsers(50).during(20 seconds)  // 100 users (total users: 50 + 50 = 100)
     ).protocols(httpProtocol)
-  )
+  ).assertions(global.failedRequests.count.is(0))
 
 }

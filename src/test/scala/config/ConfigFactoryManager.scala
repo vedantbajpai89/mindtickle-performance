@@ -15,7 +15,7 @@ case class ConfigFactoryManager() {
   val deleteAuthorUsingId: String = config.getString("gatling.endpoints.deleteAuthorUsingId")
   val minimumTimeToThink = 1
   val maximumTimeToThink = 5
-  val createAuthorJSONPath = "/Users/vedantbajpai/Desktop/codebase/mindtickle-performance/src/test/scala/simulations/testdata/authors-create.json"
-  val updateAuthorJSONPath = "/Users/vedantbajpai/Desktop/codebase/mindtickle-performance/src/test/scala/simulations/testdata/authors-put.json"
+  val createAuthorJSONPath = "/Users/vedantbajpai/Desktop/codebase/mindtickle-performance/src/test/scala/simulations/authors/testdata/request_json/authors-create.json"
+  val updateAuthorJSONPath = "/Users/vedantbajpai/Desktop/codebase/mindtickle-performance/src/test/scala/simulations/authors/testdata/request_json/authors-put.json"
 
 }

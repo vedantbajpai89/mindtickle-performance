@@ -5,7 +5,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import config.ConfigFactoryManager
 import play.api.libs.json.Json
-import simulations.testdata.TestDataGenerator
+import simulations.authors.testdata.TestDataGenerator
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -22,7 +22,7 @@ class CreateAuthorsSimulation extends Simulation{
     .acceptHeader("application/json")
     .doNotTrackHeader("1")
 
-  val authors = scenario("Post with Modified JSON Body")
+  val authors = scenario("Create Authors endpoint test")
     .exec {
       session =>
         val jsonPath = getConfig.createAuthorJSONPath
@@ -35,7 +35,7 @@ class CreateAuthorsSimulation extends Simulation{
         val newSession = session.set("jsonBody", modifiedJsonString)
         newSession
     }
-    .exec(http("POST Request")
+    .exec(http("Create Authors")
       .post(getConfig.createAuthor)
       .headers(headers)
       .body(StringBody("${jsonBody}"))
@@ -56,6 +56,6 @@ class CreateAuthorsSimulation extends Simulation{
       nothingFor(3 seconds),
       rampUsers(50).during(20 seconds)  // 100 users (total users: 50 + 50 = 100)
     ).protocols(httpProtocol)
-  )
+  ).assertions(global.failedRequests.count.is(0))
 
 }
