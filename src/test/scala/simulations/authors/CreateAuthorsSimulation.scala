@@ -56,6 +56,9 @@ class CreateAuthorsSimulation extends Simulation{
       nothingFor(3 seconds),
       rampUsers(50).during(20 seconds)  // 100 users (total users: 50 + 50 = 100)
     ).protocols(httpProtocol)
-  ).assertions(global.failedRequests.count.is(0))
+  )
+    .assertions(global.failedRequests.count.is(0))
+    .assertions(global.responseTime.max.lt(1500))
+
 
 }
