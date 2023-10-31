@@ -1,4 +1,4 @@
-# mindtickle-performance
+# performance-test-framework
 
 #About framework
 
